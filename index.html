@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>Ninja Gold</title>
+</head>
+<style>
+    /* *{
+        border: solid green 2px;
+    } */
+    #form{
+        box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+        width: 350px;
+        height: 250px;
+        text-align: center;
+    }
+    #comments{
+        display: inline-flex;
+    }
+    #box_of_forms{
+        display: flex;
+        justify-content: space-between;
+    }
+    #log{
+        border: solid black 3px;
+        width: 1400px;
+        height: 300px;
+    }
+
+</style>
+<body>
+    <div>
+        <p>Your Gold: {{session['Your_Gold']}}</p>
+        <div class="row justify-content-around" id="box_of_forms">
+            <form id="form" class="col-md-1 col-centered" action="/process_money" method="post">
+                <h1>Farm</h1>
+                <p>(earns 10-20 golds)</p>
+                <input type="hidden" name="building" value="farm">
+                <input type="submit" value="Find Gold!">
+            </form>
+            <form  id="form" class="col-md-1" action="/process_money" method="post">
+                <h1>Cave</h1>
+                <p>(earns 5-10 golds)</p>
+                <input type="hidden" name="building" value="cave">
+                <input type="submit" value="Find Gold!">
+            </form>
+            <form  id="form" class="col-md-1" action="/process_money" method="post">
+                <h1>House</h1>
+                <p>(earns 2-5 golds)</p>
+                <input type="hidden" name="building" value="house">
+                <input type="submit" value="Find Gold!">
+            </form>
+            <form  id="form" class="col-md-1" action="/process_money" method="post">
+                <h1>Casino</h1>
+                <p>(earns 0-50 golds)</p>
+                <input type="hidden" name="building" value="casino">
+                <input type="submit" value="Find Gold!">
+            </form>
+        </div>
+        <form action="/process_money">Activities:
+            <ul id="log">
+                {% for Money_Log in session.Money_Log %}
+                <li>{{Money_Log}} </li>
+                {% endfor %}
+            </ul>
+        </form>
+        <button><a href="/clear">Reset</a></button>
+    </div>
+</body>
+<script src="js/bootstrap.js">
+</script>
+</html>
